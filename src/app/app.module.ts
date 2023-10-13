@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 import { EventsAppComponent } from './events-app.component';
 import { EventsListComponent } from './events/events-list.component';
@@ -8,7 +10,10 @@ import { NavBarComponent } from './nav/navbar.component';
 import { EventService } from './events/shared/event.service';
 
 @NgModule({
-  imports: [BrowserModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule, ToastrModule.forRoot() // for angular 16 to use toastr
+  ],
   declarations: [
     EventsAppComponent,
     EventsListComponent,
