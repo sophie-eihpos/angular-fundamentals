@@ -30,7 +30,24 @@ import { EventRouteActivator } from './events/event-details/event-route-activato
     CreateEventComponent,
     Error404Component
   ],
-  providers: [EventService, EventRouteActivator],
+  providers: [
+    EventService, 
+    EventRouteActivator,
+
+    // after use modified the form then click on cancel button, this prevents the user from canceling before saving it.
+    { 
+      provide: 'canDeactivateCreateEvent', 
+      useValue: checkDirtyState
+    }
+  ],
   bootstrap: [EventsAppComponent],
 })
 export class AppModule {}
+
+export function checkDirtyState(component: CreateEventComponent) {
+  if (component.isDirty) {
+    return window.confirm('You have not saved this event, do you really want to cancel?');;
+  }
+  
+  return true;
+}
