@@ -2,8 +2,10 @@ import { Routes } from "@angular/router";
 
 import { EventDetailsComponent } from "./events/event-details/event-details.component";
 import { EventsListComponent } from "./events/events-list.component";
+import { CreateEventComponent } from "./events/create-event.component";
 
 export const appRoutes: Routes = [
+    { path: 'events/new', component: CreateEventComponent }, // this has to be the first route
     { path: 'events', component: EventsListComponent },
     { path: 'events/:id', component: EventDetailsComponent },
     { path: '', redirectTo: 'events', pathMatch: 'full' }
