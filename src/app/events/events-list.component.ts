@@ -5,7 +5,7 @@ import { ToastrService } from "ngx-toastr";
 // declare let toastr: any;
 
 @Component({
-    selector: 'events-list',
+    // selector: 'events-list', // remove this because we are using <router-outlet>
     template: `
     <div>
         <h1>Upcoming Angular Events</h1>
