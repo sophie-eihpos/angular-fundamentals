@@ -24,5 +24,12 @@ export const appRoutes: Routes = [
         canActivate: mapToCanActivate([EventRouteActivator]) // use a service
     },
     { path: '404', component: Error404Component },
-    { path: '', redirectTo: 'events', pathMatch: 'full' }
+    { path: '', redirectTo: 'events', pathMatch: 'full' },
+
+    // when the route starts with 'user', then load UserModule from the path of './user/user.module'
+    { 
+        path: 'user', 
+        loadChildren: () => import('./user/user.module').then(mod => mod.UserModule),
+        // loadChildren: './user/user.module#UserModule' deprecated in angular 8
+    }
 ];
