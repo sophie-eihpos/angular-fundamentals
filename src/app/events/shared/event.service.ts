@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { Subject } from "rxjs";
 
 @Injectable()
 export class EventService {
@@ -8,7 +9,17 @@ export class EventService {
     // }
 
     getEvents() {
-        return EVENTS;
+      let subject = new Subject();
+
+      // change 100 to 2000 so the data is loading slow, use events-list-resolver.service
+      // to avoid the component loading partially
+      // the title <h1>Upcoming Angular Events</h1> will not show up until all the data is ready
+      setTimeout(() => {
+        subject.next(EVENTS);
+        subject.complete();
+      }, 100) 
+      
+      return subject;
     }
 
     getEvent(id: number) {

@@ -14,6 +14,7 @@ import { appRoutes } from './routes';
 import { CreateEventComponent } from './events/create-event.component';
 import { Error404Component } from './errors/404.component';
 import { EventRouteActivator } from './events/event-details/event-route-activator.service';
+import { EventListResolver } from './events/events-list-resolver.service';
 
 @NgModule({
   imports: [
@@ -33,12 +34,11 @@ import { EventRouteActivator } from './events/event-details/event-route-activato
   providers: [
     EventService, 
     EventRouteActivator,
+    EventListResolver,
 
-    // after use modified the form then click on cancel button, this prevents the user from canceling before saving it.
-    { 
-      provide: 'canDeactivateCreateEvent', 
-      useValue: checkDirtyState
-    }
+    // after use modified the form then click on cancel button, 
+    // this prevents the user from canceling before saving it.
+    { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }
   ],
   bootstrap: [EventsAppComponent],
 })

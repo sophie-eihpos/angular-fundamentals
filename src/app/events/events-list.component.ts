@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { EventService } from "./shared/event.service";
 import { ToastrService } from "ngx-toastr";
+import { ActivatedRoute } from "@angular/router";
 
 // declare let toastr: any;
 
@@ -21,15 +22,23 @@ import { ToastrService } from "ngx-toastr";
     `
 })
 export class EventsListComponent implements OnInit {
-  events: any[] = [];
+  events: any;
 
   constructor(
     private eventService: EventService,
-    private toastrService: ToastrService // for angular 16
+    private toastrService: ToastrService, // for angular 16
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.events = this.eventService.getEvents();
+    // 'events' needs to be matching with resolve:  { events: EventListResolver } in routes.ts
+    // using resolver so that the title <h1>Upcoming Angular Events</h1> will not show up until all the data is ready
+    this.events = this.activatedRoute.snapshot.data['events'] 
+
+    //// comment this out because we are now using resolver
+    // this.eventService.getEvents().subscribe(events => {
+    //   this.events = events;
+    // });
   }
 
   handleThumbnailClick(eventName: string) {
