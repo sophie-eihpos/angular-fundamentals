@@ -1,6 +1,9 @@
 import { Injectable } from "@angular/core";
 import { EventService } from "./shared/event.service";
-import { map } from 'rxjs/operators';
+import { map } from 'rxjs/operators'; // to avoid warning message, disable strict mode in tsconfig.ts
+
+// // deprecated, so no need to do implements Resolver
+// import { Resolve } from "@angular/router";
 
 @Injectable()
 export class EventListResolver {

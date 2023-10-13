@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { Subject } from "rxjs"; // to avoid warning message, disable strict mode in tsconfig.ts
 
 @Injectable()
 export class EventService {
