@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
+import { AuthService } from '../user/auth.service';
 
 @Component({
   selector: 'nav-bar',
@@ -11,4 +12,12 @@ import { Component } from '@angular/core';
     `,
   ],
 })
-export class NavBarComponent {}
+export class NavBarComponent {
+  authService: AuthService;
+  isAuthenticated: boolean = false;
+  currentUserFirstName: string = '';
+
+  constructor() {
+    this.authService = inject(AuthService);
+  }
+}
