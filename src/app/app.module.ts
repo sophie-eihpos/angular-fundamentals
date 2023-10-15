@@ -18,6 +18,7 @@ import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/navbar.component';
 import { appRoutes } from './routes';
 import { Error404Component } from './errors/404.component';
+import { AuthService } from './user/auth.service';
 
 @NgModule({
   imports: [
@@ -41,7 +42,9 @@ import { Error404Component } from './errors/404.component';
 
     // after use modified the form then click on cancel button, 
     // this prevents the user from canceling before saving it.
-    { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }
+    { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
+
+    AuthService
   ],
   bootstrap: [EventsAppComponent],
 })
