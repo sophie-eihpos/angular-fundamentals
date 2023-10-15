@@ -15,7 +15,7 @@ import { EventService, IEvent } from "./shared"; // no need to use '.shared/inde
 })
 export class CreateEventComponent implements OnInit {
 
-    event: IEvent;
+    // event: IEvent;
     newEvent: IEvent;
     isDirty:boolean = true;
 
@@ -24,21 +24,21 @@ export class CreateEventComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.event = {
-            id: 888,
-            name: 'Ng Spectacular',            
-            date: new Date('8/8/2028'),
-            time: '10am',
-            price: 799.99,
-            location: {
-                address: '456 Happy St',
-                city: 'Felicity',
-                country: 'Angularistan'
-            },
-            onlineUrl: 'http://ngSpecuacular.com',
-            imageUrl: 'http://ngSpectacular.com/logo.png',
-            sessions: []
-        }
+        // this.event = {
+        //     id: 888,
+        //     name: 'Ng Spectacular',            
+        //     date: new Date('8/8/2028'),
+        //     time: '10am',
+        //     price: 799.99,
+        //     location: {
+        //         address: '456 Happy St',
+        //         city: 'Felicity',
+        //         country: 'Angularistan'
+        //     },
+        //     onlineUrl: 'http://ngSpecuacular.com',
+        //     imageUrl: 'http://ngSpectacular.com/logo.png',
+        //     sessions: []
+        // }
     }
 
     saveEvent(formValues) {
