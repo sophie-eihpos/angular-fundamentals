@@ -13,11 +13,12 @@ import { AuthService } from '../user/auth.service';
   ],
 })
 export class NavBarComponent {
+
+  // make it public so that html can reference it directly
   authService: AuthService;
-  isAuthenticated: boolean = false;
-  currentUserFirstName: string = '';
 
   constructor() {
+    // angular 16 - inject service without constructor
     this.authService = inject(AuthService);
   }
 }
