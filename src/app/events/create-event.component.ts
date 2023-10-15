@@ -1,6 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { EventService } from "./shared"; // no need to use '.shared/index'
+import { EventService, IEvent } from "./shared"; // no need to use '.shared/index'
 
 @Component({
     templateUrl: 'create-event.component.html',
@@ -13,13 +13,32 @@ import { EventService } from "./shared"; // no need to use '.shared/index'
         .error: ::ms-input-placeholder { color: #999 }
     `]
 })
-export class CreateEventComponent {
+export class CreateEventComponent implements OnInit {
 
-    newEvent;
+    event: IEvent;
+    newEvent: IEvent;
     isDirty:boolean = true;
 
     constructor(private router: Router,
         private eventService: EventService) {
+    }
+
+    ngOnInit(): void {
+        this.event = {
+            id: 888,
+            name: 'Ng Spectacular',            
+            date: new Date('8/8/2028'),
+            time: '10am',
+            price: 799.99,
+            location: {
+                address: '456 Happy St',
+                city: 'Felicity',
+                country: 'Angularistan'
+            },
+            onlineUrl: 'http://ngSpecuacular.com',
+            imageUrl: 'http://ngSpectacular.com/logo.png',
+            sessions: []
+        }
     }
 
     saveEvent(formValues) {
