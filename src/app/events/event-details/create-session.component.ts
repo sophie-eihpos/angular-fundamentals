@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ISession } from "../shared";
+
+import { ISession, restrictedWords } from "../shared"; // no need to do '../shared/index'
 
 @Component({
     templateUrl: './create-session.component.html',
@@ -11,6 +12,8 @@ import { ISession } from "../shared";
         .error: ::-moz-placeholder { color: #999 }
         .error: :-moz-input-placeholder { color: #999 }
         .error: ::ms-input-placeholder { color: #999 }
+        .error select { background-color: #E3C3C5 }
+        .error textarea { background-color: #E3C3C5 }
     `]
 })
 export class CreateSessionComponent implements OnInit {
@@ -27,7 +30,11 @@ export class CreateSessionComponent implements OnInit {
         this.presenter = new FormControl('', Validators.required);
         this.duration = new FormControl('', Validators.required);
         this.level = new FormControl('', Validators.required);
-        this.abstract = new FormControl('', [Validators.required, Validators.maxLength(400)]);
+        this.abstract = new FormControl('', [
+            Validators.required,
+            Validators.maxLength(40),
+            restrictedWords(['foo', 'bar'])
+        ]);
 
         this.newSessionForm = new FormGroup({
             name: this.name,
