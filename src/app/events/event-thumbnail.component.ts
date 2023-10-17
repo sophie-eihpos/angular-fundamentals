@@ -6,8 +6,13 @@ import { IEvent } from './shared/index';
   template: `
     <div [routerLink]="['/events', event.id]"
       class="well hoverwell thumbnail" *ngIf="event">
-      <h2>{{ event.name }}</h2>
-      <div>Date: {{ event.date }}</div>
+      <h2>{{ event.name | uppercase }}</h2>
+      <!-- 9/26/36 -->
+      <!-- <div>Date: {{ event.date | date: 'shortDate' }}</div>  -->
+
+      <!-- 9/26/2036 -->
+      <div>Date: {{ event.date | date: 'M/d/yyyy' }}</div> 
+
       <div [ngStyle]="getStartTimeStyle()"
         [ngSwitch]="event.time">
         Time: {{ event.time }}
@@ -16,7 +21,7 @@ import { IEvent } from './shared/index';
         <span *ngSwitchDefault>(Normal Start)</span>
       </div>
       <!-- escape the dollar sign -->
-      <div>price: \${{ event.price }}</div>
+      <div>price: {{ event.price | currency:'USD' }}</div>
       <div *ngIf="event.location">
         <span>Location: {{ event.location.address }}</span>
         <span class="pad-left">{{ event.location.city }}, {{ event.location.country }}</span>
