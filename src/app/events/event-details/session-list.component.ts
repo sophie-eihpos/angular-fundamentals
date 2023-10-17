@@ -9,22 +9,37 @@ export class SessionListComponent implements OnChanges {
     
     @Input() sessions: ISession[];
     @Input() filterBy: string;
-    visibleSession: ISession[] = [];
-    
+    @Input() sortBy: string;
+    visibleSessions: ISession[] = [];
+
     ngOnChanges() {
         if(this.sessions) {
             this.filterSessions(this.filterBy);
+            this.sortBy === 'name' 
+                ? this.visibleSessions.sort(sortByNameAsc) 
+                : this.visibleSessions.sort(sortByVotesDesc);
         }
     }
 
     filterSessions(filter: string) {
         if(filter === 'all') {
-            this.visibleSession = this.sessions;
+            this.visibleSessions = this.sessions;
         } 
         else {
-            this.visibleSession = this.sessions.filter(session => {
+            this.visibleSessions = this.sessions.filter(session => {
                 return session.level.toLocaleLowerCase() === filter;
             });
         };
     }
 }
+
+function sortByNameAsc(a: ISession, b: ISession): number {
+    if(a.name > b.name) return 1;
+    else if(a.name === b.name) return 0;
+    else return -1;
+}
+
+function sortByVotesDesc(a: ISession, b: ISession): number {
+    return b.voters.length - a.voters.length;
+}
+
