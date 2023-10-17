@@ -15,6 +15,7 @@ import { ISession } from "../shared";
 export class EventDetailsComponent implements OnInit {
     event: any = {};
     addMode: boolean = false;
+    filterBy: string = 'all';
 
     constructor(private eventService: EventService,
         private activatedRoute: ActivatedRoute) {        
