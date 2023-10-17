@@ -6,10 +6,10 @@
         autocomplete="off" novalidate>
         <div class="form-group" [ngClass]="{ 'error' : !validateFirstName() }">
           <label for="firstName">First Name:</label>
-          <em *ngIf="!validateFirstName() && profileForm.controls['firstName'].errors['required']">
+          <em *ngIf="!validateFirstName() && firstName.errors['required']">
             Required
           </em>
-          <em *ngIf="!validateFirstName() && profileForm.controls['firstName'].errors['pattern']">
+          <em *ngIf="!validateFirstName() && firstName.errors['pattern']">
             Must start with a letter
           </em>
 

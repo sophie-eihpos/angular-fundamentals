@@ -42,4 +42,3 @@ function sortByNameAsc(a: ISession, b: ISession): number {
 function sortByVotesDesc(a: ISession, b: ISession): number {
     return b.voters.length - a.voters.length;
 }
-
