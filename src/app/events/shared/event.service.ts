@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, Subject } from "rxjs"; // to avoid warning message, disable strict mode in tsconfig.ts
 
 import { IEvent, ISession } from "./event.model";
@@ -82,6 +82,7 @@ const EVENTS : IEvent[] = [
       sessions: [
         {
           id: 1,
+          eventId: 1,
           name: "Using Angular 4 Pipes",
           presenter: "Peter Bacon Darwin",
           duration: 1,
@@ -94,6 +95,7 @@ const EVENTS : IEvent[] = [
         },
         {
           id: 2,
+          eventId: 1,
           name: "Getting the most out of your dev team",
           presenter: "Jeff Cross",
           duration: 1,
@@ -106,6 +108,7 @@ const EVENTS : IEvent[] = [
         },
         {
           id: 3,
+          eventId: 1,
           name: "Angular 4 Performance Metrics",
           presenter: "Rob Wormald",
           duration: 2,
@@ -119,6 +122,7 @@ const EVENTS : IEvent[] = [
         },
         {
           id: 4,
+          eventId: 1,
           name: "Angular 5 Look Ahead",
           presenter: "Brad Green",
           duration: 2,
@@ -133,6 +137,7 @@ const EVENTS : IEvent[] = [
         },
         {
           id: 5,
+          eventId: 1,
           name: "Basics of Angular 4",
           presenter: "John Papa",
           duration: 2,
@@ -155,7 +160,8 @@ const EVENTS : IEvent[] = [
       onlineUrl: 'http://ng-nl.org/',
       sessions: [
         {
-          id: 1,
+          id: 21,
+          eventId: 2,
           name: "Testing Angular 4 Workshop",
           presenter: "Pascal Precht & Christoph Bergdorf",
           duration: 4,
@@ -167,7 +173,8 @@ const EVENTS : IEvent[] = [
           voters: ['bradgreen', 'igorminar']
         },
         {
-          id: 2,
+          id: 22,
+          eventId: 2,
           name: "Angular 4 and Firebase",
           presenter: "David East",
           duration: 3,
@@ -177,7 +184,8 @@ const EVENTS : IEvent[] = [
           voters: ['bradgreen', 'igorminar', 'johnpapa']
         },
         {
-          id: 3,
+          id: 23,
+          eventId: 2,
           name: "Reading the Angular 4 Source",
           presenter: "Patrick Stapleton",
           duration: 2,
@@ -188,7 +196,8 @@ const EVENTS : IEvent[] = [
           voters: ['martinfowler']
         },
         {
-          id: 4,
+          id: 24,
+          eventId: 2,
           name: "Hail to the Lukas",
           presenter: "Lukas Ruebbelke",
           duration: 1,
@@ -215,7 +224,8 @@ const EVENTS : IEvent[] = [
       },
       sessions: [
         {
-          id: 1,
+          id: 31,
+          eventId: 3,
           name: "How Elm Powers Angular 4",
           presenter: "Murphy Randle",
           duration: 2,
@@ -227,7 +237,8 @@ const EVENTS : IEvent[] = [
           voters: ['bradgreen', 'martinfowler', 'igorminar']
         },
         {
-          id: 2,
+          id: 32,
+          eventId: 3,
           name: "Angular and React together",
           presenter: "Jamison Dance",
           duration: 2,
@@ -237,7 +248,8 @@ const EVENTS : IEvent[] = [
           voters: ['bradgreen', 'martinfowler']
         },
         {
-          id: 3,
+          id: 33,
+          eventId: 3,
           name: "Redux Woes",
           presenter: "Rob Wormald",
           duration: 1,
@@ -249,7 +261,8 @@ const EVENTS : IEvent[] = [
           voters: ['bradgreen', 'martinfowler', 'johnpapa']
         },
         {
-          id: 4,
+          id: 34,
+          eventId: 3,
           name: "ng-wat again!!",
           presenter: "Shai Reznik",
           duration: 1,
@@ -259,7 +272,8 @@ const EVENTS : IEvent[] = [
           voters: ['bradgreen', 'martinfowler', 'igorminar', 'johnpapa']
         },
         {
-          id: 5,
+          id: 35,
+          eventId: 3,
           name: "Dressed for Success",
           presenter: "Ward Bell",
           duration: 2,
@@ -271,7 +285,8 @@ const EVENTS : IEvent[] = [
           voters: ['bradgreen', 'martinfowler']
         },
         {
-          id: 6,
+          id: 36,
+          eventId: 3,
           name: "These aren't the directives you're looking for",
           presenter: "John Papa",
           duration: 2,
@@ -297,7 +312,8 @@ const EVENTS : IEvent[] = [
       },
       sessions: [
         {
-          id: 1,
+          id: 41,
+          eventId: 4,
           name: "Diversity in Tech",
           presenter: "Sir Dave Smith",
           duration: 2,
@@ -309,7 +325,8 @@ const EVENTS : IEvent[] = [
           voters: ['bradgreen', 'igorminar']
         },
         {
-          id: 2,
+          id: 42,
+          eventId: 4,
           name: "World Peace and Angular",
           presenter: "US Secretary of State Zach Galifianakis",
           duration: 2,
@@ -320,7 +337,8 @@ const EVENTS : IEvent[] = [
           voters: ['bradgreen', 'igorminar', 'johnpapa']
         },
         {
-          id: 3,
+          id: 43,
+          eventId: 4,
           name: "Using Angular with Androids",
           presenter: "Dan Wahlin",
           duration: 3,
@@ -346,7 +364,8 @@ const EVENTS : IEvent[] = [
       },
       sessions: [
         {
-          id: 1,
+          id: 51,
+          eventId: 5,
           name: "Gambling with Angular",
           presenter: "John Papa",
           duration: 1,
@@ -359,7 +378,8 @@ const EVENTS : IEvent[] = [
           voters: ['bradgreen', 'igorminar']
         },
         {
-          id: 2,
+          id: 52,
+          eventId: 5,
           name: "Angular 4 in 60ish Minutes",
           presenter: "Dan Wahlin",
           duration: 2,

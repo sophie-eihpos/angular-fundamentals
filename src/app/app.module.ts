@@ -17,13 +17,15 @@ import {
   DurationPipe
 } from './events/index';
 
+import { CollapsibleWellComponent, JQUERY_TOKEN, SimpleModalComponent, ModalTriggerDirective } from './common/index';
 import { EventsAppComponent } from './events-app.component';
 import { NavBarComponent } from './nav/navbar.component';
 import { appRoutes } from './routes';
 import { Error404Component } from './errors/404.component';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CollapsibleWellComponent } from './common/collapsible-well.component';
+
+let jQuery = window['$'];
 
 @NgModule({
   imports: [
@@ -44,18 +46,20 @@ import { CollapsibleWellComponent } from './common/collapsible-well.component';
     CreateEventComponent,
     Error404Component,
     CollapsibleWellComponent,
+    SimpleModalComponent,
+    ModalTriggerDirective,
     DurationPipe
   ],
-  providers: [
+  providers: [    
+    { provide: JQUERY_TOKEN, useValue: jQuery },
+    AuthService,
     EventService, 
     EventRouteActivator,
     EventListResolver,
 
     // after use modified the form then click on cancel button, 
     // this prevents the user from canceling before saving it.
-    { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
-
-    AuthService
+    { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState }
   ],
   bootstrap: [EventsAppComponent],
 })

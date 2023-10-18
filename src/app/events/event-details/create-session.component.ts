@@ -51,6 +51,7 @@ export class CreateSessionComponent implements OnInit {
     saveSession(formValues: ISession) {
         let session: ISession = {
             id: undefined,
+            eventId: undefined,
             name: formValues.name,
             duration: +formValues.duration, // convert it to a number
             level: formValues.level,
