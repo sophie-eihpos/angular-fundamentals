@@ -29,6 +29,7 @@ export class EventDetailsComponent implements OnInit {
         // it actually navigates away to the new event detail page
         this.activatedRoute.params.forEach((params: Params) => {
             this.event = this.eventService.getEvent(+params['id']);
+            this.addMode = false;
         });
 
         // // snapshot does not change, so comment it out
