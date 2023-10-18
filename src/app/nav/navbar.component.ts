@@ -27,10 +27,10 @@ export class NavBarComponent {
     this.authService = inject(AuthService);
   }
 
-  searchSessions(searchTerm) {
+  searchSessions(searchTerm: string) {
     this.eventService.searchSessions(searchTerm).subscribe(sessions => {
         this.foundSessions = sessions;
-        console.log(this.foundSessions);
+        // console.log(this.foundSessions);
       }
     )
   }
