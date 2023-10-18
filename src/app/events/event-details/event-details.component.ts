@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Params } from "@angular/router";
 
 import { EventService } from "../shared/event.service";
 import { ISession } from "../shared";
@@ -24,8 +24,16 @@ export class EventDetailsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.currentEventId = +this.activatedRoute.snapshot.params['id'];
-        this.event = this.eventService.getEvent(this.currentEventId);
+        // need to change it to listen to the param value changes
+        // so that when click on the search results on the modal dialog
+        // it actually navigates away to the new event detail page
+        this.activatedRoute.params.forEach((params: Params) => {
+            this.event = this.eventService.getEvent(+params['id']);
+        });
+
+        // // snapshot does not change, so comment it out
+        // this.currentEventId = +this.activatedRoute.snapshot.params['id'];
+        // this.event = this.eventService.getEvent(this.currentEventId);
     }
 
     addSession() {
@@ -37,7 +45,7 @@ export class EventDetailsComponent implements OnInit {
         const nextId = Math.max.apply(null, this.event.sessions.map(s => s.id));
 
         session.id = nextId + 1;
-        session.eventId =  this.currentEventId;
+        session.eventId =  this.event.id;
         this.event.sessions.push(session);
         this.eventService.updateEvent(this.event);
         this.addMode = false;
