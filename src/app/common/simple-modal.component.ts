@@ -1,4 +1,5 @@
-import { Component, Input } from "@angular/core"
+import { Component, ElementRef, Inject, Input, ViewChild } from "@angular/core"
+import { JQUERY_TOKEN } from "./jQuery.service";
 
 @Component({
     selector: 'simple-modal',
@@ -13,4 +14,12 @@ import { Component, Input } from "@angular/core"
 export class SimpleModalComponent {
     @Input() title: string;
     @Input() elementId: string;
+    @ViewChild('modalcontainer') modalContainerEl: ElementRef;
+
+    constructor(@Inject(JQUERY_TOKEN) private $: any) {
+    }
+
+    closeModal() {
+        this.$(this.modalContainerEl.nativeElement).modal('hide');
+    }
 }
