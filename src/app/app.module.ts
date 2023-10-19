@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router'; // cannot put it before BrowerModule
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { HttpClientModule } from '@angular/common/http';
 
 import {
   EventsListComponent,
@@ -36,7 +37,8 @@ let jQuery = window['$'];
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, ToastrModule.forRoot(), // for angular 16 to use toastr,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule
   ],
   declarations: [
     EventsAppComponent,
