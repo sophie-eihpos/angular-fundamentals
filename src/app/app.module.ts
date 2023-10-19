@@ -16,7 +16,8 @@ import {
   EventListResolver,
   DurationPipe,
   UpVoteComponent,
-  VoterService
+  VoterService,
+  LocationValidator
 } from './events/index';
 
 import { CollapsibleWellComponent, JQUERY_TOKEN, SimpleModalComponent, ModalTriggerDirective } from './common/index';
@@ -51,7 +52,8 @@ let jQuery = window['$'];
     SimpleModalComponent,
     ModalTriggerDirective,
     DurationPipe,
-    UpVoteComponent
+    UpVoteComponent,
+    LocationValidator
   ],
   providers: [    
     { provide: JQUERY_TOKEN, useValue: jQuery },

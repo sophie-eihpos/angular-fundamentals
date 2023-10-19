@@ -1,5 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { FormControl, FormGroup, NgModelGroup } from "@angular/forms";
+
 import { EventService, IEvent } from "./shared"; // no need to use '.shared/index'
 
 @Component({
@@ -13,14 +15,25 @@ import { EventService, IEvent } from "./shared"; // no need to use '.shared/inde
         .error: :-ms-input-placeholder { color: #999 } */
     `]
 })
-export class CreateEventComponent {
+export class CreateEventComponent implements OnInit {
 
     // event: IEvent;
     newEvent: IEvent;
     isDirty:boolean = true;
-
+    
+    newEventForm: FormGroup;
+    location: NgModelGroup;
+    address: FormControl;
+    
     constructor(private router: Router,
         private eventService: EventService) {
+    }
+    
+    ngOnInit(): void {
+        this.address = new FormControl();
+        this.newEventForm = new FormGroup({
+            address: this.address
+        })
     }
 
     saveEvent(formValues) {
