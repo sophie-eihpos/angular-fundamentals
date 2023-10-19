@@ -24,7 +24,7 @@ export class SessionListComponent implements OnChanges {
         }
     }
 
-    constructor(private authService: AuthService, private voterService: VoterService) {
+    constructor(public authService: AuthService, private voterService: VoterService) {
     }
 
     userHasVoted(session: ISession): boolean {
