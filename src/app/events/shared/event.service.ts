@@ -1,27 +1,39 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, Subject } from "rxjs"; // to avoid warning message, disable strict mode in tsconfig.ts
+import { BehaviorSubject, Observable, of } from "rxjs"; // to avoid warning message, disable strict mode in tsconfig.ts
+import { catchError } from "rxjs/operators"; 
+import { HttpClient } from "@angular/common/http";
 
 import { IEvent, ISession } from "./event.model";
 
 @Injectable()
 export class EventService {
 
-    // constructor(private http:Http){
-
-    // }
+    constructor(private http: HttpClient) {
+    }
 
     getEvents(): Observable<IEvent[]> {
-      let subject = new Subject<IEvent[]>();
+      return this.http.get<IEvent[]>('/api/events')
+        .pipe(catchError(this.handleError<IEvent[]>('getEvents', [])));
 
-      // change 100 to 2000 so the data is loading slow, use events-list-resolver.service
-      // to avoid the component loading partially
-      // the title <h1>Upcoming Angular Events</h1> will not show up until all the data is ready
-      setTimeout(() => {
-        subject.next(EVENTS);
-        subject.complete();
-      }, 100) 
+      //// commment the code below because we are going to use HttpClient instead
+      // let subject = new Subject<IEvent[]>();
+
+      // // change 100 to 2000 so the data is loading slow, use events-list-resolver.service
+      // // to avoid the component loading partially
+      // // the title <h1>Upcoming Angular Events</h1> will not show up until all the data is ready
+      // setTimeout(() => {
+      //   subject.next(EVENTS);
+      //   subject.complete();
+      // }, 100) 
       
-      return subject;
+      // return subject;
+    }
+
+    private handleError<T> (opetion = 'operation', result?: T) {
+      return (error: any): Observable<T> => {
+        console.error(error);
+        return of(result as T);
+      }
     }
 
     getEvent(id: number): IEvent {
