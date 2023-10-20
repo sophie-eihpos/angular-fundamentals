@@ -9,6 +9,8 @@ import { AuthService } from './user/auth.service';
   `
 })
 export class EventsAppComponent implements OnInit {
+  title = 'angular-unit-testing';
+  
   constructor(private auth: AuthService) {    
   }
 
