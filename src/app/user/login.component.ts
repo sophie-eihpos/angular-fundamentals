@@ -12,14 +12,22 @@ export class LoginComponent {
   userName: string;
   password: string;
   mouseoverLogin: boolean;
+  loginInvalid = false;
 
   constructor(private authService: AuthService,
     private router: Router) {
   }
 
   login(formValues: any) {
-    this.authService.loginUser(formValues.userName, formValues.password);
-    this.router.navigate(['events']);
+    this.authService.loginUser(formValues.userName, formValues.password)
+      .subscribe(response => {
+        if(!response) {
+          this.loginInvalid =  true;
+        }
+        else {
+          this.router.navigate(['events']);
+        }
+      });
   }
 
   cancel() {
