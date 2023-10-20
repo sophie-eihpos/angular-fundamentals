@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable, of } from "rxjs"; // to avoid warning message, disable strict mode in tsconfig.ts
 import { catchError } from "rxjs/operators"; 
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 import { IEvent, ISession } from "./event.model";
 
@@ -37,10 +37,18 @@ export class EventService {
       // return EVENTS.find(event => event.id === id);
     }
 
-    saveEvent(event: IEvent) {
-      event.id = 999;
-      event.sessions = [];
-      EVENTS.push(event);      
+    saveEvent(event: IEvent): Observable<IEvent> {
+      let options = { headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })};
+
+      return this.http.post<IEvent>('/api/events', event, options)
+        .pipe(catchError(this.handleError<IEvent>('saveEvent')));
+
+      //// commment the code below because we are going to use HttpClient instead
+      // event.id = 999;
+      // event.sessions = [];
+      // EVENTS.push(event);      
     }
 
     updateEvent(event: IEvent) {
