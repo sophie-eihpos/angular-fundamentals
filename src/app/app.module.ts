@@ -13,12 +13,13 @@ import {
   CreateSessionComponent,
   CreateEventComponent,
   SessionListComponent,
-  EventRouteActivator,
+  // EventRouteActivator,
   EventListResolver,
   DurationPipe,
   UpVoteComponent,
   VoterService,
-  LocationValidator
+  LocationValidator,
+  EventResolver
 } from './events/index';
 
 import { CollapsibleWellComponent, JQUERY_TOKEN, SimpleModalComponent, ModalTriggerDirective } from './common/index';
@@ -61,9 +62,10 @@ let jQuery = window['$'];
     { provide: JQUERY_TOKEN, useValue: jQuery },
     AuthService,
     EventService, 
-    EventRouteActivator,
+    // EventRouteActivator,
     EventListResolver,
     VoterService,
+    EventResolver,
 
     // after use modified the form then click on cancel button, 
     // this prevents the user from canceling before saving it.

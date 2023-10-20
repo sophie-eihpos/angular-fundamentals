@@ -1,12 +1,12 @@
-import { Routes, mapToCanActivate } from "@angular/router";
+import { Routes } from "@angular/router";
 
 import {
     EventDetailsComponent,
     EventsListComponent,
     CreateEventComponent,
-    EventRouteActivator,
     EventListResolver,
-    CreateSessionComponent
+    CreateSessionComponent,
+    EventResolver
 } from './events/index';
 
 import { Error404Component } from "./errors/404.component";
@@ -24,8 +24,11 @@ export const appRoutes: Routes = [
     },
     { 
         path: 'events/:id', 
-        component: EventDetailsComponent, 
-        canActivate: mapToCanActivate([EventRouteActivator]) // use a service
+        component: EventDetailsComponent,
+        resolve: { event: EventResolver }
+
+        // commented this out because we are use resolver instead of activate guard
+        // canActivate: mapToCanActivate([EventRouteActivator]) // use a service
     },
     { path: 'events/session/new', component: CreateSessionComponent },
     { path: '404', component: Error404Component },

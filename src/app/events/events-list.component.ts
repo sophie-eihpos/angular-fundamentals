@@ -33,7 +33,7 @@ export class EventsListComponent implements OnInit {
   ngOnInit() {
     // 'events' needs to be matching with resolve:  { events: EventListResolver } in routes.ts
     // using resolver so that the title <h1>Upcoming Angular Events</h1> will not show up until all the data is ready
-    this.events = this.activatedRoute.snapshot.data['events'] 
+    this.events = this.activatedRoute.snapshot.data['events'];
 
     //// comment this out because we are now using resolver
     // this.eventService.getEvents().subscribe(events => {

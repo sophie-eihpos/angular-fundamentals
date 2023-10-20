@@ -29,15 +29,12 @@ export class EventService {
       // return subject;
     }
 
-    private handleError<T> (opetion = 'operation', result?: T) {
-      return (error: any): Observable<T> => {
-        console.error(error);
-        return of(result as T);
-      }
-    }
+    getEvent(id: number): Observable<IEvent> {
+      return this.http.get<IEvent>('/api/events/' + id)
+      .pipe(catchError(this.handleError<IEvent>('getEvents')));
 
-    getEvent(id: number): IEvent {
-        return EVENTS.find(event => event.id === id);
+      // // change 100 to 2000 so the data is loading slow, use events-list-resolver.service
+      // return EVENTS.find(event => event.id === id);
     }
 
     saveEvent(event: IEvent) {
@@ -75,6 +72,13 @@ export class EventService {
 
       let sessions = new BehaviorSubject(results).asObservable();
       return sessions;
+    }
+
+    private handleError<T> (opetion = 'operation', result?: T) {
+      return (error: any): Observable<T> => {
+        console.error(error);
+        return of(result as T);
+      }
     }
 }
 
