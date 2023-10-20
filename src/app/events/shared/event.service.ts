@@ -31,7 +31,7 @@ export class EventService {
 
     getEvent(id: number): Observable<IEvent> {
       return this.http.get<IEvent>('/api/events/' + id)
-      .pipe(catchError(this.handleError<IEvent>('getEvents')));
+        .pipe(catchError(this.handleError<IEvent>('getEvents')));
 
       // // change 100 to 2000 so the data is loading slow, use events-list-resolver.service
       // return EVENTS.find(event => event.id === id);
@@ -59,20 +59,25 @@ export class EventService {
     // }
 
     searchSessions(searchTerm: string): Observable<ISession[]> {
-      let term = searchTerm.toLocaleLowerCase();
-      let results: ISession[] = [];
+      return this.http.get<ISession[]>('/api/sessions/search?search=' + searchTerm)
+        .pipe(catchError(this.handleError<ISession[]>('searchSessions', [])));
+
+
+      //// commment the code below because we are going to use HttpClient instead
+      // let term = searchTerm.toLocaleLowerCase();
+      // let results: ISession[] = [];
       
-      EVENTS.forEach(event => {
-        let matchingSessions = event.sessions.filter(session => 
-          session.name.toLocaleLowerCase().indexOf(term) >= 0);
+      // EVENTS.forEach(event => {
+      //   let matchingSessions = event.sessions.filter(session => 
+      //     session.name.toLocaleLowerCase().indexOf(term) >= 0);
 
-        matchingSessions = matchingSessions.map((session: any) => {
-          session.eventId = event.id;
-          return session;
-        })
+      //   matchingSessions = matchingSessions.map((session: any) => {
+      //     session.eventId = event.id;
+      //     return session;
+      //   })
 
-        results = results.concat(matchingSessions);
-      })
+      //   results = results.concat(matchingSessions);
+      // })
 
       //// comment this out based on the course on pluralsight because it will not work with subscribe
       // let emitter = new EventEmitter(true);
@@ -80,8 +85,8 @@ export class EventService {
       //   emitter.emit(results);
       // }, 100);
 
-      let sessions = new BehaviorSubject(results).asObservable();
-      return sessions;
+      // let sessions = new BehaviorSubject(results).asObservable();
+      // return sessions;
     }
 
     private handleError<T> (opetion = 'operation', result?: T) {
