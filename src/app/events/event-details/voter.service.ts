@@ -9,8 +9,14 @@ export class VoterService {
     constructor(private http: HttpClient) {
     }
 
-    deleteVoter(session: ISession, voterName: string): void {
+    deleteVoter(eventId: number, session: ISession, voterName: string): void {
         session.voters = session.voters.filter(voter => voter !== voterName);
+
+        const url = `/api/events/${eventId}/sessions/${session.id}/voters/${voterName}`;
+        this.http.delete(url)
+            .pipe(catchError(this.handleError('deleteVoter')))
+             // since we don't care what it returns back, we will just use subscribe here
+             .subscribe();
     }
 
     addVoter(eventId: number, session: ISession, voterName: string): void {
