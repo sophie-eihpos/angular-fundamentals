@@ -51,10 +51,12 @@ export class EventService {
       // EVENTS.push(event);      
     }
 
-    updateEvent(event: IEvent) {
-      let index = EVENTS.findIndex(x => x.id = event.id);
-      EVENTS[index] = event;
-    }
+    //// comment this out because we don't need a PUT method (the signature is the same as the POST method)
+    //// we can use POST method with an Id passed to update the event
+    // updateEvent(event: IEvent) {
+    //   let index = EVENTS.findIndex(x => x.id = event.id);
+    //   EVENTS[index] = event;
+    // }
 
     searchSessions(searchTerm: string): Observable<ISession[]> {
       let term = searchTerm.toLocaleLowerCase();
