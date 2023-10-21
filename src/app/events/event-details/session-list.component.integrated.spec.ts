@@ -1,11 +1,13 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SessionListComponent } from "./session-list.component";
 import { DebugElement } from '@angular/core';
 import { AuthService } from 'src/app/user/auth.service';
 import { VoterService } from './voter.service';
+import { DurationPipe } from '../shared';
+import { CollapsibleWellComponent } from 'src/app/common';
+import { UpVoteComponent } from './upvote.component';
 
-
-describe('SessionListComponent', () => {
+describe('SessionListComponent Integrated', () => {
 
     let mockAuthService,
         mockVoterService,
@@ -15,16 +17,23 @@ describe('SessionListComponent', () => {
         debugEl: DebugElement
 
     beforeEach(() => {
+
+        mockAuthService = { 
+            isAuthenticated: () => true,
+            currentUser: { userName: 'Joe' }
+         };
+        mockVoterService = { userHasVoted: () => true };
+
         TestBed.configureTestingModule({
             declarations: [
-                SessionListComponent
-
-                // angular 16 won't error out without DurationPip in declarations
-                // DurationPipe 
+                SessionListComponent,
+                 DurationPipe,                 
+                 CollapsibleWellComponent,
+                 UpVoteComponent
             ],
             providers: [
                 { provide: AuthService, useValue: mockAuthService },
-                { provide: VoterService, useValue: mockVoterService }
+                { provide: VoterService, useValue: mockVoterService }                
             ]
         });
 
@@ -36,7 +45,7 @@ describe('SessionListComponent', () => {
 
     describe('initial display', () => {
 
-        it('should have the correct title', () => {
+        it('should have the correct name', () => {
             // arrange
             component.sessions = [
                 { 
@@ -59,9 +68,8 @@ describe('SessionListComponent', () => {
             fixture.detectChanges();
 
             // assert
-
+            expect(element.querySelector('[well-title]').textContent).toContain('Session 1');
         });
-
     });
 
 });
