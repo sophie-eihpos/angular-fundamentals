@@ -35,6 +35,7 @@ export class VoterService {
         return session.voters.some(voter => voter === voterName)
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     private handleError<T> (operation = 'operation', result?: T) {
         return (error: unknown): Observable<T> => {
             console.error(error);

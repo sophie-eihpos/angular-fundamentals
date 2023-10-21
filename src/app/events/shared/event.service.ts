@@ -62,7 +62,6 @@ export class EventService {
       return this.http.get<ISession[]>('/api/sessions/search?search=' + searchTerm)
         .pipe(catchError(this.handleError<ISession[]>('searchSessions', [])));
 
-
       //// commment the code below because we are going to use HttpClient instead
       // let term = searchTerm.toLocaleLowerCase();
       // let results: ISession[] = [];
@@ -89,6 +88,7 @@ export class EventService {
       // return sessions;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     private handleError<T> (operation = 'operation', result?: T) {
       return (error: unknown): Observable<T> => {
         console.error(error);
