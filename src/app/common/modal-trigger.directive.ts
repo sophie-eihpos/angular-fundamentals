@@ -11,6 +11,8 @@ export class ModalTriggerDirective implements OnInit {
     @Input('modal-trigger') modalId: string;    
 
     constructor(elementRef: ElementRef,
+        // because jquery has to use any type not unknown type
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         @Inject(JQUERY_TOKEN) private $: any
     ) {
         this.el = elementRef.nativeElement;

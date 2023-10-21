@@ -17,6 +17,8 @@ export class SimpleModalComponent {
     @Input() closeOnBodyClick: string;
     @ViewChild('modalcontainer') modalContainerEl: ElementRef;
 
+    // because jquery has to use any type not unknown type
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     constructor(@Inject(JQUERY_TOKEN) private $: any) {
     }
 
