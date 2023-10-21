@@ -42,14 +42,14 @@ import { IEvent } from './shared/index';
 export class EventThumbnailComponent {
   @Input() event: IEvent;
 
-  getStartTimeClass(): any {
+  getStartTimeClass(): unknown {
     if (this.event && this.event.time === '8:00 am')
       return ['green', 'bold'];
 
     return [];
   }
 
-  getStartTimeStyle(): any {
+  getStartTimeStyle(): unknown {
     if (this.event && this.event.time === '8:00 am')
       return {color: '#003300', 'font-weight': 'bold'};
 

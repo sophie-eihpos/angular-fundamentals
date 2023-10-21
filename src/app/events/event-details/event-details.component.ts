@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 
 import { EventService } from "../shared/event.service";
 import { IEvent, ISession } from "../shared";
@@ -13,7 +13,7 @@ import { IEvent, ISession } from "../shared";
     `]
 })
 export class EventDetailsComponent implements OnInit {
-    event: any = {};
+    event: IEvent;
     addMode: boolean = false;
     filterBy: string = 'all';
     sortBy: string = 'votes';

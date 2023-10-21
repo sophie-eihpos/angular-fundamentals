@@ -38,7 +38,7 @@ export class EventService {
     }
 
     saveEvent(event: IEvent): Observable<IEvent> {
-      let options = { headers: new HttpHeaders({
+      const options = { headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })};
 
@@ -89,8 +89,8 @@ export class EventService {
       // return sessions;
     }
 
-    private handleError<T> (opetion = 'operation', result?: T) {
-      return (error: any): Observable<T> => {
+    private handleError<T> (operation = 'operation', result?: T) {
+      return (error: unknown): Observable<T> => {
         console.error(error);
         return of(result as T);
       }

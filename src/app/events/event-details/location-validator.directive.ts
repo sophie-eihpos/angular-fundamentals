@@ -14,10 +14,10 @@ export class LocationValidator implements Validator {
     // validate(fromGroup: FormGroup): { [key: string]: any} {
     
     validate(fromGroup: FormGroup): ValidationErrors {
-        let addressControl = fromGroup.controls['address'];
-        let cityControl = fromGroup.controls['city'];
-        let countryControl = fromGroup.controls['country'];
-        let onlineUrlControl = (<FormGroup>fromGroup.root).controls['onlineUrl'];
+        const addressControl = fromGroup.controls['address'];
+        const cityControl = fromGroup.controls['city'];
+        const countryControl = fromGroup.controls['country'];
+        const onlineUrlControl = (<FormGroup>fromGroup.root).controls['onlineUrl'];
 
         if((addressControl && addressControl.value
             && cityControl && cityControl.value

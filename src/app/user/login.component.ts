@@ -18,7 +18,7 @@ export class LoginComponent {
     private router: Router) {
   }
 
-  login(formValues: any) {
+  login(formValues) {
     this.authService.loginUser(formValues.userName, formValues.password)
       .subscribe(response => {
         if(!response) {

@@ -17,7 +17,7 @@ export class SimpleModalComponent {
     @Input() closeOnBodyClick: string;
     @ViewChild('modalcontainer') modalContainerEl: ElementRef;
 
-    constructor(@Inject(JQUERY_TOKEN) private $: any) {
+    constructor(@Inject(JQUERY_TOKEN) private $: unknown) {
     }
 
     closeModal() {

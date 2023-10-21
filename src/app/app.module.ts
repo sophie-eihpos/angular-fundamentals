@@ -30,7 +30,7 @@ import { Error404Component } from './errors/404.component';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-let jQuery = window['$'];
+const jQuery = window['$'];
 
 @NgModule({
   imports: [
@@ -77,7 +77,7 @@ export class AppModule {}
 
 export function checkDirtyState(component: CreateEventComponent) {
   if (component.isDirty) {
-    return window.confirm('You have not saved this event, do you really want to cancel?');;
+    return window.confirm('You have not saved this event, do you really want to cancel?');
   }
   
   return true;

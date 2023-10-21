@@ -53,7 +53,7 @@ export class SessionListComponent implements OnChanges {
             this.visibleSessions = this.sessions.filter(session => {
                 return session.level.toLocaleLowerCase() === filter;
             });
-        };
+        }
     }
 }
 

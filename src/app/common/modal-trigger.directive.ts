@@ -11,13 +11,13 @@ export class ModalTriggerDirective implements OnInit {
     @Input('modal-trigger') modalId: string;    
 
     constructor(elementRef: ElementRef,
-        @Inject(JQUERY_TOKEN) private $: any
+        @Inject(JQUERY_TOKEN) private $: unknown
     ) {
         this.el = elementRef.nativeElement;
     }
 
     ngOnInit() {
-        this.el.addEventListener('click', e => {
+        this.el.addEventListener('click', () => {
 
             // instead of hardcoded modal id, use Input property
             // so that one page could have multiple modals if it's needed
