@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router'; // cannot put it before BrowerModule
+import { PreloadAllModules, RouterModule } from '@angular/router'; // cannot put it before BrowerModule
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from '@angular/common/http';
@@ -38,7 +38,10 @@ const jQuery = window['$'];
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule, ToastrModule.forRoot(), // for angular 16 to use toastr,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, {
+      // this enables user.module.chunk.js to be downloaded before hitting login page
+      preloadingStrategy: PreloadAllModules
+    }),
     HttpClientModule
   ],
   declarations: [
