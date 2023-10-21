@@ -18,6 +18,9 @@ describe('SessionListComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 SessionListComponent
+
+                // angular 16 won't error out without DurationPip in declarations
+                // DurationPipe 
             ],
             providers: [
                 { provide: AuthService, useValue: mockAuthService },
@@ -33,6 +36,31 @@ describe('SessionListComponent', () => {
 
     describe('initial display', () => {
 
+        it('should have the correct title', () => {
+            // arrange
+            component.sessions = [
+                { 
+                    name: 'Session 1',
+                    id: 3,
+                    eventId: 1,
+                    presenter: 'Joe',
+                    duration: 1,
+                    level: 'beginner',
+                    abstract: 'abstract',
+                    voters: ['john', 'bob']
+                }
+            ];
+            component.filterBy = 'all';
+            component.sortBy = 'name';
+            component.eventId = 4;
+            component.ngOnChanges();
+
+            // act
+            fixture.detectChanges();
+
+            // assert
+
+        });
 
     });
 
