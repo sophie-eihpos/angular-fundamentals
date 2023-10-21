@@ -1,47 +1,46 @@
 import { ISession } from "../shared";
 import { SessionListComponent } from "./session-list.component"
 
-describe('SessionListComponent', () => {
+describe('SessionListComponent Isolated', () => {
     let component: SessionListComponent;
     let mockAuthService, mockVoterService;
 
     beforeEach(() => {
         component = new SessionListComponent(mockAuthService, mockVoterService);
+    });
 
-        describe('ngOnChange', () => {
+    describe('ngOnChange', () => {
 
-            it('should filter the sessions by level correctly', () => {
-                component.sessions = <ISession[]>[
-                    {name: 'session 1', level: 'intermediate'},
-                    {name: 'session 2', level: 'intermediate'},
-                    {name: 'session 3', level: 'beginner'}
-                ];
+        it('should filter the sessions by level correctly', () => {
+            component.sessions = <ISession[]>[
+                {name: 'session 1', level: 'intermediate'},
+                {name: 'session 2', level: 'intermediate'},
+                {name: 'session 3', level: 'beginner'}
+            ];
 
-                component.filterBy = 'intermediate';
-                component.sortBy = 'name';
-                component.eventId = 3;
+            component.filterBy = 'intermediate';
+            component.sortBy = 'name';
+            component.eventId = 3;
 
-                component.ngOnChanges();
+            component.ngOnChanges();
 
-                expect(component.visibleSessions.length).toBe(2);
-            });
-
-            it('should sort the sessions by name correctly', () => {
-                component.sessions = <ISession[]>[
-                    {name: 'session 1', level: 'intermediate'},
-                    {name: 'session 3', level: 'intermediate'},
-                    {name: 'session 2', level: 'beginner'}
-                ];
-
-                component.filterBy = 'all';
-                component.sortBy = 'name';
-                component.eventId = 3;
-
-                component.ngOnChanges();
-
-                expect(component.visibleSessions[2].name).toBe('session 3');
-            });
-
+            expect(component.visibleSessions.length).toBe(2);
         });
-    })
-})
+
+        it('should sort the sessions by name correctly', () => {
+            component.sessions = <ISession[]>[
+                {name: 'session 1', level: 'intermediate'},
+                {name: 'session 3', level: 'intermediate'},
+                {name: 'session 2', level: 'beginner'}
+            ];
+
+            component.filterBy = 'all';
+            component.sortBy = 'name';
+            component.eventId = 3;
+
+            component.ngOnChanges();
+
+            expect(component.visibleSessions[2].name).toBe('session 3');
+        });
+    });
+});
