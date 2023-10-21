@@ -1,12 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SessionListComponent } from "./session-list.component";
-import { DebugElement } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { By } from '@angular/platform-browser';
+
 import { AuthService } from 'src/app/user/auth.service';
 import { VoterService } from './voter.service';
 import { DurationPipe } from '../shared';
-import { CollapsibleWellComponent } from 'src/app/common';
-import { UpVoteComponent } from './upvote.component';
-import { By } from '@angular/platform-browser';
 
 describe('SessionListComponent Integrated', () => {
 
@@ -28,13 +27,18 @@ describe('SessionListComponent Integrated', () => {
         TestBed.configureTestingModule({
             declarations: [
                 SessionListComponent,
-                 DurationPipe,                 
-                 CollapsibleWellComponent,
-                 UpVoteComponent
+                DurationPipe
+
+                // // NO_ERRORS_SCHEMA will ignore the child components
+                // CollapsibleWellComponent,
+                // UpVoteComponent
             ],
             providers: [
                 { provide: AuthService, useValue: mockAuthService },
                 { provide: VoterService, useValue: mockVoterService }                
+            ],
+            schemas: [
+                NO_ERRORS_SCHEMA
             ]
         });
 
