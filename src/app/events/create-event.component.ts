@@ -30,6 +30,12 @@ export class CreateEventComponent implements OnInit {
     }
     
     ngOnInit(): void {
+
+        // // we could use FormBuilder after inject it to the constructor
+        // this.newEventForm = this.formBuilder.group({
+        //     address: ''
+        // })
+
         this.address = new FormControl();
         this.newEventForm = new FormGroup({
             address: this.address
